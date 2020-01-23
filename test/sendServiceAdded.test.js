@@ -1,14 +1,11 @@
 jest.mock('kue');
 
-
 describe('when sending an service added email', () => {
 
   const connectionString = 'some-redis-connection';
   const email = 'user.one@unit.test';
   const firstName = 'User';
   const lastName = 'One';
-  const orgName = 'org name';
-  const serviceName = 'service name';
 
   let invokeCallback;
   let jobSave;
@@ -43,57 +40,45 @@ describe('when sending an service added email', () => {
   });
 
   test('then it should create queue connecting to provided connection string', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
+    await client.sendServiceAdded(email, firstName, lastName);
 
     expect(createQueue.mock.calls.length).toBe(1);
     expect(createQueue.mock.calls[0][0].redis).toBe(connectionString);
   });
 
   test('then it should create job with type of userserviceadded_v1', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
+    await client.sendServiceAdded(email, firstName, lastName);
 
     expect(create.mock.calls.length).toBe(1);
     expect(create.mock.calls[0][0]).toBe('userserviceadded_v1');
   });
 
   test('then it should create job with data including email', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
+    await client.sendServiceAdded(email, firstName, lastName);
 
     expect(create.mock.calls[0][1].email).toBe(email);
   });
 
   test('then it should create job with data including firstName', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
+    await client.sendServiceAdded(email, firstName, lastName);
 
     expect(create.mock.calls[0][1].firstName).toBe(firstName);
   });
 
   test('then it should create job with data including lastName', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
+    await client.sendServiceAdded(email, firstName, lastName);
 
     expect(create.mock.calls[0][1].lastName).toBe(lastName);
   });
 
-  test('then it should create job with data including orgName', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
-
-    expect(create.mock.calls[0][1].orgName).toBe(orgName);
-  });
-
-  test('then it should create job with data including serviceName', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
-
-    expect(create.mock.calls[0][1].serviceName).toBe(serviceName);
-  });
-
   test('then it should save the job', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
+    await client.sendServiceAdded(email, firstName, lastName);
 
     expect(jobSave.mock.calls.length).toBe(1);
   });
 
   test('then it should resolve if there is no error', async () => {
-    await client.sendServiceAdded(email, firstName, lastName, orgName, serviceName);
+    await client.sendServiceAdded(email, firstName, lastName);
   });
 
   test('then it should reject if there is an error', async () => {
@@ -101,7 +86,7 @@ describe('when sending an service added email', () => {
       callback('Unit test error');
     };
 
-    await expect(client.sendServiceAdded(email, firstName, lastName, orgName, serviceName)).rejects.toBeDefined();
+    await expect(client.sendServiceAdded(email, firstName, lastName)).rejects.toBeDefined();
   });
 
 });
