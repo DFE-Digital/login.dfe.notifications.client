@@ -85,7 +85,6 @@ describe('when sending a user has been removed from organisation email', () => {
     invokeCallback = (callback) => {
       callback('Unit test error');
     };
-
     await expect(client.sendUserRemovedFromOrganisation(email, firstName, lastName, orgName)).rejects.toBeDefined();
   });
 });
