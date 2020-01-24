@@ -6,7 +6,7 @@ describe('when sending a user added to organisation email', () => {
   const email = 'user.one@unit.test';
   const firstName = 'User';
   const lastName = 'One';
-  const orgName = 'org1'
+  const orgName = 'org1';
 
   let invokeCallback;
   let jobSave;
@@ -87,7 +87,7 @@ describe('when sending a user added to organisation email', () => {
       callback('Unit test error');
     };
 
-    await expect(client.sendServiceAdded(email, firstName, lastName, orgName)).rejects.toBeDefined();
+    await expect(client.sendUserAddedToOrganisation(email, firstName, lastName, orgName)).rejects.toBeDefined();
   });
 
 });
