@@ -8,6 +8,7 @@ describe('when sending a user permission updated for organisation email', () => 
   const lastName = 'One';
   const orgName = 'org1';
   const roleName = 'role1';
+  const permissionName = 'approver';
 
   let invokeCallback;
   let jobSave;
@@ -79,10 +80,10 @@ describe('when sending a user permission updated for organisation email', () => 
     expect(create.mock.calls[0][1].orgName).toBe(orgName);
   });
 
-  test('then it should create job with data including roleName', async () => {
-    await client.sendUserPermissionChanged(email, firstName, lastName, orgName, roleName);
+  test('then it should create job with data including permissionName', async () => {
+    await client.sendUserPermissionChanged(email, firstName, lastName, orgName, permissionName);
 
-    expect(create.mock.calls[0][1].roleName).toBe(roleName);
+    expect(create.mock.calls[0][1].permissionName).toBe(permissionName);
   });
 
   test('then it should save the job', async () => {
