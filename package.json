@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.notifications.client",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Client for sending user notifications within DfE Login",
   "main": "lib/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/DFE-Digital/login.dfe.notifications.client#readme",
   "dependencies": {
-    "kue": "^0.11.6"
+    "login.dfe.kue": "git+https://github.com/DFE-Digital/login.dfe.kue.git#v0.11.6"
   },
   "devDependencies": {
     "eslint": "^8.12.0",

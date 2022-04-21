@@ -1,4 +1,4 @@
-jest.mock('kue');
+jest.mock('login.dfe.kue');
 
 
 describe('when sending an access request email', () => {
@@ -35,7 +35,7 @@ describe('when sending an access request email', () => {
       create
     });
 
-    const kue = require('kue');
+    const kue = require('login.dfe.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');

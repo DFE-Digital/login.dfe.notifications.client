@@ -1,4 +1,4 @@
-jest.mock('kue');
+jest.mock('login.dfe.kue');
 
 
 describe('when sending a 2FA login code', () => {
@@ -32,7 +32,7 @@ describe('when sending a 2FA login code', () => {
       create
     });
 
-    const kue = require('kue');
+    const kue = require('login.dfe.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');

@@ -1,4 +1,4 @@
-jest.mock('kue');
+jest.mock('login.dfe.kue');
 
 
 describe('when sending an invitation', () => {
@@ -38,7 +38,7 @@ describe('when sending an invitation', () => {
       create
     });
 
-    const kue = require('kue');
+    const kue = require('login.dfe.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');
