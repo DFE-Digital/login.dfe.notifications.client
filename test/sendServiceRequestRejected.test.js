@@ -36,7 +36,7 @@ describe('when sending an service rejected email', () => {
       create
     });
 
-    const kue = require('kue');
+    const kue = require('dfe.login.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('../lib');

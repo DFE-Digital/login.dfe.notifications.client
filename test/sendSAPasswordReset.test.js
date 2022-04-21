@@ -34,7 +34,7 @@ describe('when sending an SA user password reset', () => {
       create
     });
 
-    const kue = require('kue');
+    const kue = require('dfe.login.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');

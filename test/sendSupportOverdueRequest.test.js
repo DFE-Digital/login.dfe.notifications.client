@@ -32,7 +32,7 @@ describe('when sending outstanding requests awaiting approval', () => {
       create
     });
 
-    const kue = require('kue');
+    const kue = require('dfe.login.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');

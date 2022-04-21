@@ -34,7 +34,7 @@ describe('when sending a support request confirmation', () => {
       create
     });
 
-    const kue = require('kue');
+    const kue = require('dfe.login.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');
