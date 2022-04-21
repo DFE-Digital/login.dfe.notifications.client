@@ -1,4 +1,4 @@
-jest.mock('kue');
+jest.mock('login.dfe.kue');
 
 
 describe('when sending a support request', () => {
@@ -38,7 +38,7 @@ describe('when sending a support request', () => {
       create
     });
 
-    const kue = require('dfe.login.kue');
+    const kue = require('login.dfe.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');

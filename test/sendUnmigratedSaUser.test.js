@@ -1,4 +1,4 @@
-jest.mock('kue');
+jest.mock('login.dfe.kue');
 
 
 describe('when sending an unmigrated SA user email', () => {
@@ -34,7 +34,7 @@ describe('when sending an unmigrated SA user email', () => {
       create
     });
 
-    const kue = require('dfe.login.kue');
+    const kue = require('login.dfe.kue');
     kue.createQueue = createQueue;
 
     const NotificationClient = require('./../lib');
