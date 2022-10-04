@@ -9,6 +9,7 @@ describe('when sending an service approved email', () => {
   const orgName = 'testOrg';
   const serviceName = 'testServiceName';
   const requestedSubServices = ["test-sub-service"];
+  const permissionName = "End user";
 
   let invokeCallback;
   let jobSave;
@@ -43,14 +44,14 @@ describe('when sending an service approved email', () => {
   });
 
   test('then it should create queue connecting to provided connection string', async () => {
-    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices);
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
 
     expect(createQueue.mock.calls.length).toBe(1);
     expect(createQueue.mock.calls[0][0].redis).toBe(connectionString);
   });
 
   test('then it should create job with type of userserviceadded_v2', async () => {
-    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices);
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
 
     expect(create.mock.calls.length).toBe(1);
     expect(create.mock.calls[0][0]).toBe('userserviceadded_v2');
@@ -58,31 +59,37 @@ describe('when sending an service approved email', () => {
 
 
   test('then it should create job with data including email', async () => {
-    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices);
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
 
     expect(create.mock.calls[0][1].email).toBe(email);
   });
 
   test('then it should create job with data including firstName', async () => {
-    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices);
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
 
     expect(create.mock.calls[0][1].firstName).toBe(firstName);
   });
 
   test('then it should create job with data including lastName', async () => {
-    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices);
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
 
     expect(create.mock.calls[0][1].lastName).toBe(lastName);
   });
 
+  test('then it should create job with data including permissionName', async () => {
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
+
+    expect(create.mock.calls[0][1].permissionName).toBe(permissionName);
+  });
+
   test('then it should save the job', async () => {
-    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices);
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
 
     expect(jobSave.mock.calls.length).toBe(1);
   });
 
   test('then it should resolve if there is no error', async () => {
-    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices);
+    await client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName);
   });
 
   test('then it should reject if there is an error', async () => {
@@ -90,7 +97,7 @@ describe('when sending an service approved email', () => {
       callback('Unit test error');
     };
 
-    await expect(client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices)).rejects.toBeDefined();
+    await expect(client.sendServiceRequestApproved(email, firstName, lastName, orgName, serviceName, requestedSubServices, permissionName)).rejects.toBeDefined();
   });
 
 });

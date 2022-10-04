@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.notifications.client",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "Client for sending user notifications within DfE Login",
   "main": "lib/index.js",
   "scripts": {
