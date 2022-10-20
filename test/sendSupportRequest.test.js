@@ -60,17 +60,18 @@ describe('when sending a support request', () => {
   });
 
   test('then it should create job with data in call', async () => {
-    await client.sendSupportRequest(name, email, phone, service, type, message, orgName, urn);
+    await client.sendSupportRequest(name, email, service, type, null, orgName, urn, message);
 
     expect(create.mock.calls[0][1]).toEqual({
       name,
       email,
-      phone,
+      service,
       service,
       type,
-      message,
+      typeAdditionalInfo: null,
       orgName,
       urn,
+      message,
     });
   });
 
