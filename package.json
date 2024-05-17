@@ -1,6 +1,6 @@
 {
   "name": "login.dfe.notifications.client",
-  "version": "5.0.7",
+  "version": "5.2.1",
   "description": "Client for sending user notifications within DfE Login",
   "main": "lib/index.js",
   "scripts": {
@@ -17,14 +17,14 @@
   },
   "homepage": "https://github.com/DFE-Digital/login.dfe.notifications.client#readme",
   "dependencies": {
-    "login.dfe.kue": "git+https://github.com/DFE-Digital/login.dfe.kue.git#v0.11.6"
+    "login.dfe.kue": "github:DFE-Digital/login.dfe.kue#v0.12.0"
   },
   "devDependencies": {
     "eslint": "^8.12.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.8.0",
-    "jest": "^27.5.1",
-    "jest-cli": "^27.5.1"
+    "jest": "^29.6.3",
+    "jest-cli": "^29.6.3"
   },
   "jest": {
     "testEnvironment": "node",
