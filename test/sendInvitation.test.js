@@ -10,7 +10,6 @@ describe('when sending an invitation', () => {
   const invitationId = 'some-uuid';
   const code = 'ABC123';
   const serviceName = 'Service One';
-  const requiresDigipass = true;
   const selfInvoked = true;
 
   let invokeCallback;
@@ -53,44 +52,44 @@ describe('when sending an invitation', () => {
   });
 
   test('then it should create job with type of invitation_v2', async () => {
-    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked);
+    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked);
 
     expect(create.mock.calls.length).toBe(1);
     expect(create.mock.calls[0][0]).toBe('invitation_v2');
   });
 
   test('then it should create job with data including email', async () => {
-    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked);
+    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked);
 
     expect(create.mock.calls[0][1].email).toBe(email);
   });
 
   test('then it should create job with data including first name', async () => {
-    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked);
+    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked);
 
     expect(create.mock.calls[0][1].firstName).toBe(firstName);
   });
 
   test('then it should create job with data including last name', async () => {
-    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked);
+    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked);
 
     expect(create.mock.calls[0][1].lastName).toBe(lastName);
   });
 
   test('then it should create job with data including code', async () => {
-    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked);
+    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked);
 
     expect(create.mock.calls[0][1].code).toBe(code);
   });
 
   test('then it should save the job', async () => {
-    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked);
+    await client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked);
 
     expect(jobSave.mock.calls.length).toBe(1);
   });
 
   test('then it should resolve if there is no error', async () => {
-    await expect(client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked)).resolves.toBeUndefined();
+    await expect(client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked)).resolves.toBeUndefined();
   });
 
   test('then it should reject if there is an error', async () => {
@@ -98,7 +97,7 @@ describe('when sending an invitation', () => {
       callback('Unit test error');
     };
 
-    await expect(client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, requiresDigipass, selfInvoked)).rejects.toBeDefined();
+    await expect(client.sendInvitation(email, firstName, lastName, invitationId, code, serviceName, selfInvoked)).rejects.toBeDefined();
   });
 
 });
